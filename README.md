@@ -54,10 +54,6 @@ Native Bitwig Studio devices and modulators by [Polarity](https://polarity.me/),
 
 ![Multiband FX-4 panel showing the four band chains, spectra and crossover controls](previews/fx-4.png)
 
-### Multiband FX-4 preview
-
-![Multiband FX-4 preview panel showing the four-band container panel preview](previews/multiband-fx-4.png)
-
 ### Normalizer
 
 ![Normalizer panel showing the loudness measurement and gain correction controls](previews/normalizer.png)
