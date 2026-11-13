@@ -26,9 +26,55 @@ Native devices for Bitwig Studio by [Polarity](https://polarity.me/). Put the `.
 | [Step Sequencer](devices/Step%20Sequencer.bwdevice) | Note generator | A tempo-synced 16-step note sequencer with per-step gate, velocity, pressure and note rows. Place an instrument after it. | [Preview](previews/step-sequencer.png) |
 | [SVF Lab](devices/SVF%20Lab.bwdevice) | Audio FX | A stereo filter research device with low-pass, band-pass and high-pass modes. | — |
 
-![Chord Arp panel with a 16-step rank matrix](previews/chord-arp.png)
+## Device gallery
 
-![OTT panel with three-band compressor controls and meters](previews/ott.png)
+### Chord Arp
+
+![Chord Arp panel showing the 16-step note-rank matrix](previews/chord-arp.png)
+
+### FILAR
+
+![FILAR panel showing the additive synthesizer partial editor](previews/filar.png)
+
+### Halftime
+
+![Halftime panel showing the tempo-synced loop and tape-speed controls](previews/halftime.png)
+
+### Multiband FX-4
+
+![Multiband FX-4 panel showing the four band chains, spectra and crossover controls](previews/fx-4.png)
+
+### Multiband FX-4 preview
+
+![Multiband FX-4 preview panel showing the four-band container panel preview](previews/multiband-fx-4.png)
+
+### Normalizer
+
+![Normalizer panel showing the loudness measurement and gain correction controls](previews/normalizer.png)
+
+### Orbit
+
+![Orbit panel showing the resonator controls](previews/orbit.png)
+
+### OTT
+
+![OTT panel showing the three-band compressor controls and meters](previews/ott.png)
+
+### Prism
+
+![Prism panel showing the weighted melody generator controls](previews/prism.png)
+
+### Rivet
+
+![Rivet panel showing the monophonic synthesizer controls](previews/rivet.png)
+
+### SHARD
+
+![SHARD panel showing the spectral gain controls](previews/shard.png)
+
+### Step Sequencer
+
+![Step Sequencer panel showing the 16-step note sequencer panel](previews/step-sequencer.png)
 
 ## Compatibility and updates
 
