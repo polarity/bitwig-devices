@@ -1,6 +1,6 @@
 # Polarity Bitwig Devices
 
-Native Bitwig Studio devices and modulators by [Polarity](https://polarity.me/), loaded through [Patchbay Mod Loader](https://github.com/shaboogen-dev/Patchbay).
+Native Bitwig Studio devices and modulators by [Polarity](https://polarity.me/), loaded through [Patchbay Mod Loader](https://github.com/shaboogen-dev/Patchbay). [Join the Discord to discuss the devices](https://discord.gg/Z3fEexCRHg).
 
 ## Install
 
