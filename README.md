@@ -1,13 +1,13 @@
 # Polarity Bitwig Devices
 
-Native devices for Bitwig Studio by [Polarity](https://polarity.me/). Put the `.bwdevice` files in a folder scanned by Patchbay Mod Loader.
+Native Bitwig Studio devices and modulators by [Polarity](https://polarity.me/), loaded through [Patchbay Mod Loader](https://github.com/shaboogen-dev/Patchbay).
 
 ## Install
 
-1. Download the [Patchbay Mod Loader tester release with the Nitro fix](https://github.com/shaboogen-dev/BML/releases/tag/0.36.0-dev.9%2Bnitro-1.2.0-dev.5) and follow `INSTALL.md` in the ZIP. The [Patchbay Mod Loader repository](https://github.com/shaboogen-dev/BML) and its downloads currently require tester access. The release includes **Custom Nitro Registration** `1.2.0-dev.5`, which fixes project recall for scanned devices.
-2. Open a device file below and choose **Download raw file**. To get the whole collection, use **Code → Download ZIP** and extract the `devices` folder. Keep the `.bwdevice` files in a folder of your choice.
-3. Close Bitwig. In Patchbay, enable **Framework: Custom Nitro Registration**, then open **Tools → Device Folders** and add the folder containing the files. Click **Load** to launch Bitwig with the framework enabled.
-4. In Bitwig, search for the device by name. Place Chord Arp, Prism and Step Sequencer before an instrument.
+1. Download the [Patchbay Mod Loader release](https://github.com/shaboogen-dev/Patchbay/releases/tag/0.36.0-dev.9%2Bbitwig-6.1.7) and follow `INSTALL.md` in the ZIP. This release supports Bitwig Studio 6.1.3 and includes **Custom Nitro Registration** `1.2.0-dev.5`.
+2. Open a file below and choose **Download raw file**. To get the collection, use **Code → Download ZIP** and extract it to a folder of your choice.
+3. Close Bitwig. In Patchbay, enable **Framework: Custom Nitro Registration**, open **Tools → Device Folders**, and add the extracted collection folder or the folder containing your downloads. Patchbay also scans its subfolders. Click **Load** to launch Bitwig.
+4. Find devices by name in Bitwig's device browser. Add Gesture Loop from a device's modulator panel. Place Chord Arp, Prism and Step Sequencer before an instrument.
 
 ## Devices
 
@@ -25,6 +25,16 @@ Native devices for Bitwig Studio by [Polarity](https://polarity.me/). Put the `.
 | [SHARD](devices/SHARD.bwdevice) | Audio FX | Shapes audio with 3 to 63 logarithmically spaced spectral gain bands, from broad tonal changes to detailed sculpting. | [Preview](previews/shard.png) |
 | [Step Sequencer](devices/Step%20Sequencer.bwdevice) | Note generator | A tempo-synced 16-step note sequencer with per-step gate, velocity, pressure and note rows. Place an instrument after it. | [Preview](previews/step-sequencer.png) |
 | [SVF Lab](devices/SVF%20Lab.bwdevice) | Audio FX | A stereo filter research device with low-pass, band-pass and high-pass modes. | — |
+
+## Modulators
+
+[Download Gesture Loop](modulators/Gesture%20Loop.bwmodulator) to record a macro movement and repeat it as a free-running modulation loop. Captured gestures are cleared when you reopen the project.
+
+![Gesture Loop panel from an earlier build](previews/gesture-loop.png)
+
+## Grid modules
+
+[Grid modules](grid-modules/README.md) has the current download status.
 
 ## Device gallery
 
@@ -78,6 +88,6 @@ Native devices for Bitwig Studio by [Polarity](https://polarity.me/). Put the `.
 
 ## Compatibility and updates
 
-All 12 files passed their Windows x64 Bitwig Studio **6.1.3** offline build checks. The **Custom Nitro Registration** `1.2.0-dev.5` folder scanner also found all 12 and read distinct UUIDs using Bitwig 6.1.3's document reader. This test ran outside the Bitwig application. Live insertion, audio and project recall are still unverified for most of these exact builds. The current OTT file also loaded in a saved project through Patchbay on Windows 6.1.3. macOS, Linux and other Bitwig versions are unverified for this collection.
+All 12 device files passed their Windows x64 Bitwig Studio **6.1.3** offline build checks. The **Custom Nitro Registration** `1.2.0-dev.5` folder scanner also found all 12 and read distinct UUIDs using Bitwig 6.1.3's document reader. This test ran outside the Bitwig application. Live insertion, audio and project recall are still unverified for most of these exact builds. The current OTT file also loaded in a saved project through Patchbay on Windows 6.1.3. Gesture Loop passed its offline build checks, and the same scanner recognized it as a modulator. The panel was tested in Bitwig 6.1.3 through Extension Manager. Live loading through Patchbay is unverified for this file. macOS, Linux and other Bitwig versions are unverified for this collection.
 
 The current **Chord Arp** is revision 4. Its loop endpoints use a different saved-value type from revision 1. A project saved with revision 1 failed to reopen with revision 4. For a project saved with revision 1, use its matching file from your backup or this repository's first commit. Keep a copy of the files used by your saved projects outside the scanned folders, and relaunch Bitwig through Patchbay after replacing a file.
