@@ -17,8 +17,7 @@ Select this folder in Patchbay under **Tools → Device Folders**. See the
 | [SHARD](SHARD.bwdevice) | | |
 | [Stutter](Stutter.bwdevice) | | |
 
-The original [Gesture Loop modulator](../modulators/Gesture%20Loop.bwmodulator)
-is available separately.
+Modulator: [Gesture Loop](Gesture%20Loop.bwmodulator).
 
 Stutter revision 10 passed the Windows 6.1.3 offline gate. The Windows
 6.1.4 compiler produced the same Nitro AST, and both versions' readers

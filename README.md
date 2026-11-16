@@ -17,12 +17,13 @@
 
 ## What's in this repo
 
-My instruments, effects, note generators, and modulators for Bitwig Studio.
+My instruments, effects, note generators, modulators, and Grid modules for Bitwig Studio.
 [Join the Discord to discuss the devices](https://discord.gg/Z3fEexCRHg).
 
 ## Install
 
-For manual setup, choose a device build for your Bitwig Studio version.
+For manual setup, choose the folder for your Bitwig Studio version. Grid modules
+are packaged alongside devices and modulators in the version folders.
 
 - [Before 6.1.7](Bitwig-6.1.3-6.1.4/README.md): uncompressed Nitro builds for Bitwig 6.1.3 and 6.1.4.
 - [6.1.7 and later](Bitwig-6.1.7/README.md): compressed Nitro builds. Starting with 6.1.7, Bitwig requires compressed Nitro code on Windows, macOS and Linux. Check that Patchbay supports your exact Bitwig version.
@@ -55,15 +56,13 @@ The device names below link to the uncompressed builds. For Bitwig 6.1.7 and lat
 
 ## Modulators
 
-Gesture Loop records a macro movement and repeats it as a free-running modulation loop. Captured gestures are cleared when you reopen the project. Download the [build for 6.1.3 and 6.1.4](modulators/Gesture%20Loop.bwmodulator) or the [build for 6.1.7 and later](Bitwig-6.1.7/Gesture%20Loop.bwmodulator).
-
-The older build is a manual download. Patchbay Launcher 0.9.1 lists Gesture Loop only under the 6.1.7 build.
+Gesture Loop records a macro movement and repeats it as a free-running modulation loop. Captured gestures are cleared when you reopen the project. Download the [build for 6.1.3 and 6.1.4](Bitwig-6.1.3-6.1.4/Gesture%20Loop.bwmodulator) or the [build for 6.1.7 and later](Bitwig-6.1.7/Gesture%20Loop.bwmodulator).
 
 ![Gesture Loop panel from an earlier build](previews/gesture-loop.png)
 
 ## Grid modules
 
-[Grid modules](grid-modules/README.md) has the current download status.
+[Audio Buffer for Bitwig 6.1.7](Bitwig-6.1.7/README.md#grid-modules)
 
 ## Device gallery
 
