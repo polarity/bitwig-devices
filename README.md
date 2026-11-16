@@ -104,3 +104,6 @@ The current **Chord Arp** is revision 4. Its loop endpoints use a different save
 ## Build your own Bitwig device
 
 [Bitwig Device Blueprints](https://github.com/polarity/bitwig-devices-blueprint) includes a working example and a guide to building a native Bitwig device. Point your coding agent at the blueprint repository's `AGENTS.md` to give it the build workflow and starting point for your own device.
+
+Follow the [Patchbay Launcher packaging contract](docs/patchbay-launcher.md)
+when publishing device builds or adding a fork to the launcher.
