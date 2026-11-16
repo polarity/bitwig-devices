@@ -1,12 +1,16 @@
 # Polarity Bitwig Devices
 
-This repository distributes finished Bitwig devices and modulators.
+This repository distributes finished Bitwig devices, modulators and Grid modules.
+Keep source code, development history and test records in the private
+`F:/GitHub/bitwig.devices` checkout. Public download pages describe what the
+finished module does and link to its build and preview.
 
 | Task | Start here |
 | --- | --- |
 | Add, update or relocate a downloadable build | Follow the [shared packaging manifest](docs/patchbay-launcher.md#devices-modulators-and-grid-modules) and update the matching download links. |
 | Install a build or check the supported Bitwig versions | [Installation guide](README.md#install) |
-| Author a device | [Bitwig Device Blueprints](https://github.com/polarity/bitwig-devices-blueprint) |
+| Develop or test a Polarity device, modulator or Grid module | `F:/GitHub/bitwig.devices/AGENTS.md` |
+| Build your own device | [Bitwig Device Blueprints](https://github.com/polarity/bitwig-devices-blueprint) |
 
 For documentation changes, follow the shared standard at
 `F:/GitHub/coding.defaults/documentation-standard.md` when available.

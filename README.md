@@ -62,7 +62,13 @@ Gesture Loop records a macro movement and repeats it as a free-running modulatio
 
 ## Grid modules
 
-[Audio Buffer for Bitwig 6.1.7](Bitwig-6.1.7/README.md#grid-modules)
+[Audio Buffer](Bitwig-6.1.7/Audio%20Buffer.bwmodule) records up to 30 seconds
+of stereo audio in a monophonic FX Grid. Play it at variable speeds, select a
+loop region or scrub it with an external Phase signal. The waveform shows
+loop boundaries and the current record or playback position. The recorded
+audio shapes an abstract background that moves with playback speed.
+
+![Audio Buffer panel with its waveform display and animated background](previews/audio-buffer.png)
 
 ## Device gallery
 
