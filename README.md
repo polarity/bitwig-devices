@@ -70,6 +70,26 @@ audio shapes an abstract background that moves with playback speed.
 
 ![Audio Buffer panel with its waveform display and animated background](previews/audio-buffer.png)
 
+[Sonogram](Bitwig-6.1.7/Sonogram.bwmodule) shows a scrolling stereo
+spectrogram from 20 Hz to 20 kHz. The display has 48 time columns and
+32 logarithmic frequency bands, with a selectable time window and optional
+time-frequency reassignment.
+
+![Offline Sonogram preview showing a rising note sequence](previews/sonogram.png)
+
+[Vectorscope](Bitwig-6.1.7/Vectorscope.bwmodule) draws a glowing XY trace
+from two Grid signals or a stereo pair. The display resizes in both directions.
+In the Inspector, set Persistence from 2 to 40 ms for the current trace, or
+Motion Blur from 0 to 10 seconds to accumulate a fading glow over 12 × 11 cells.
+The default view preserves equal axis scales. Enable Stretch in the Inspector
+to fill wide or tall panels. Patch Hue to color new phosphor deposits.
+Earlier colors decay and mix with new ones.
+
+![Offline Vectorscope preview showing a green XY trace with Motion Blur enabled](previews/vectorscope.png)
+
+Sonogram revision 12 and Vectorscope revision 10 passed offline checks on
+Bitwig Studio 6.1.7 for Windows x86-64. Live testing of these revisions is pending.
+
 ## Device gallery
 
 ### Chord Arp

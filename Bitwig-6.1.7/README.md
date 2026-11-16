@@ -18,8 +18,16 @@ and registering the matching build.
 | [Prism](Prism.bwdevice) | Note device |
 | [Rivet](Rivet.bwdevice) | Instrument |
 | [SHARD](SHARD.bwdevice) | Audio FX |
+| [Sonogram](Sonogram.bwmodule) | Grid module (Windows x86-64, offline-tested on 6.1.7) |
 | [Step Sequencer](Step%20Sequencer.bwdevice) | Note device |
 | [Stutter](Stutter.bwdevice) | Audio FX |
+| [Vectorscope](Vectorscope.bwmodule) | Grid module (Windows x86-64, offline-tested on 6.1.7) |
+
+Sonogram and Vectorscope include English live-help text. Keep their
+[resources](resources/) directory beside the module files. For individual
+downloads, place the [Sonogram help](resources/Sonogram/resources.properties)
+and [Vectorscope help](resources/Vectorscope/resources.properties) in
+their respective `resources/<module name>/` folders beside the binaries.
 
 All 12 devices and the Gesture Loop modulator passed the offline Nitro
 reader check with the Bitwig Studio 6.1.7 macOS arm64 toolchain. The Windows
