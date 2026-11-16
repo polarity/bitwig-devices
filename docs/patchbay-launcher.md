@@ -1,74 +1,132 @@
-# Patchbay Launcher packaging for devices
+# Patchbay Launcher packaging manifest
 
-This is the publishing contract for this repository. The discovery and update
-behavior below was verified against [Patchbay Launcher 0.9.1][launcher].
-The launcher catalogs files from the default branch of enabled GitHub sources.
-This document is for maintainers and fork authors.
+Publishing rules for Bitwig mods and native Bitwig devices. The launcher
+behavior described here was verified against [Patchbay Launcher 0.9.1][launcher].
 
-## Publish a device build
+- [Mods](#mods)
+- [Devices, modulators and Grid modules](#devices-modulators-and-grid-modules)
+- [Device preview images](#device-preview-images)
+- [Add a fork or another source](#add-a-fork-or-another-source)
+
+## Mods
+
+1. Keep the source manifest at `<mod-id>/mod.json` on the default branch. Use
+   the same stable ID for the directory and `mod.id`. The launcher can read
+   this manifest for the display name, author, description and requirements.
+2. Build one ZIP per mod. The ZIP must have exactly one top-level directory
+   named for `mod.id`. Put `mod.json`, the built helper JAR and the mod's
+   resources in that directory. The launcher reads this manifest on install.
+3. Name the asset `<mod-id>-<version>.zip` using the exact `mod.version` from
+   the packaged manifest. Use `major.minor.patch` with an optional suffix
+   such as `-dev.9`. Launcher 0.9.1 accepts letters, digits and dots after
+   the hyphen. Omit a `v` prefix and `+build` metadata from the asset version.
+4. Attach the built ZIP to a published GitHub Release. Prereleases work.
+   Multiple mods can share a release because the launcher uses each asset name
+   independently of the tag. GitHub's generated **Source code** ZIP lacks the
+   built helper.
+5. Increase the manifest and asset versions together for each update. The
+   launcher keeps the highest asset version per mod ID across enabled sources.
+   It offers an update when that version exceeds the installed `mod.version`.
+
+For example, `note-intervals-0.1.0-dev.8.zip` contains
+`note-intervals/mod.json` with `mod.id` set to `note-intervals` and
+`mod.version` set to `0.1.0-dev.8`.
+
+Launcher 0.9.1 requests one page of 30 GitHub Releases per source. Older
+assets can fall out of the catalog as new releases are published.
+The launcher chooses a single ZIP per mod ID based on version, irrespective
+of the Bitwig version, OS and architecture in `built_against`. Publish one
+asset per mod version and document its compatibility.
+
+Declare dependencies in the manifest's `requires` list. The launcher can
+queue missing dependencies available in the catalog and reports ones it
+cannot find. Verify the required frameworks and versions in Patchbay.
+
+## Devices, modulators and Grid modules
 
 1. Commit the downloadable binary directly under a top-level
-   `Bitwig-<version>/` directory. Use the lowercase extension `.bwdevice`,
-   `.bwmodulator` or `.bwmodule` for the corresponding file type. The
-   launcher downloads these files individually from the repository.
-2. Put every file offered for a given build in that build's directory. Include
-   the compatible files users should continue to see when adding a new build
-   directory. The launcher displays one selected build at a time and does not
-   fill gaps from older builds. Within each repository, once it finds supported
-   files in a top-level `Bitwig-*` directory, it ignores supported files outside
-   those directories.
-3. Keep the file's name and path stable when updating it in place. The launcher
-   compares the downloaded file's Git blob hash to the hash in the GitHub tree.
-   When the contents change at the same path, it shows an update. Use unique
-   filenames within each build because the launcher downloads into a single
-   local directory for that repository and build.
-4. Check the [supported Bitwig builds](../README.md#install), preserve the
-   device UUID across compatible variants, and update the corresponding
-   download links. For manual setup, register only the matching build folder
-   in Patchbay's **Tools → Device Folders**.
+   `Bitwig-<version>/` directory on the default branch. Use the lowercase
+   extension `.bwdevice`, `.bwmodulator` or `.bwmodule` for that file type.
+   The launcher discovers these files in the repository tree and downloads
+   each file individually.
+2. Include every compatible file offered for that build. Once the launcher
+   finds supported files in a repository's top-level `Bitwig-*` directories,
+   it skips files outside them. It shows one selected build at a time and
+   does not fill gaps from older builds.
+3. Use unique filenames within a build. The launcher stores downloads in a
+   local directory per repository and build. Keep the path stable for
+   in-place updates. The launcher compares the local Git blob hash to the
+   hash in the repository tree to detect changed bytes.
+4. Preserve the device UUID across compatible variants. Document the supported
+   Bitwig versions and update the download links. Register only the matching
+   build in Patchbay and enable **Framework: Nitro Devices**.
+5. Add or update the [device preview image](#device-preview-images).
 
-Examples of paths in this repository:
+Example paths include `Bitwig-6.1.3-6.1.4/Chord Arp.bwdevice`,
+`Bitwig-6.1.7/Chord Arp.bwdevice` and
+`Bitwig-6.1.7/Gesture Loop.bwmodulator`.
 
-~~~text
-Bitwig-6.1.3-6.1.4/Chord Arp.bwdevice
-Bitwig-6.1.7/Chord Arp.bwdevice
-Bitwig-6.1.7/Gesture Loop.bwmodulator
-~~~
+### Build selection
 
-The original [Gesture Loop for 6.1.3 and 6.1.4][legacy-gesture-loop] is a
-manual download at its legacy path. Launcher 0.9.1 omits it from the catalog.
-A launcher-discoverable build for those versions belongs at
-`Bitwig-6.1.3-6.1.4/Gesture Loop.bwmodulator`.
+The launcher reads the first version number in each folder name. It selects
+the newest starting version at or below the detected Bitwig version. A name
+like `Bitwig-6.1.3-6.1.4` starts at 6.1.3, so the launcher also selects it
+for 6.1.6 when the next build starts at 6.1.7. Check the documented
+compatibility for the selected build. The launcher selects the oldest build
+if the detected version is below all available builds, or the newest build
+if version detection fails. Users can choose a build manually.
 
-## How the build is selected
+## Device preview images
 
-On first load, the launcher selects the build with the newest starting version
-at or below the detected Bitwig version. It reads the first version number in
-the folder name. For example, a detected 6.1.6 selects
-`Bitwig-6.1.3-6.1.4` with this repository's current folders, even though that
-build is documented for 6.1.3 and 6.1.4. For a detected version below all builds
-the launcher chooses the oldest build. If detection fails, it chooses the newest.
-Users can choose a build manually. The [installation guide](../README.md#install)
-states which builds this repository supports.
+Commit a PNG to the top-level `previews/` directory on the default branch
+of the same repository as the device. The launcher takes the artifact's
+filename without the directory or extension, converts it to lowercase,
+replaces each space with a hyphen, and appends `.png`. Existing punctuation
+stays as written.
 
-## Add a fork or a separate device repository
+| Artifact filename | Preview path |
+| --- | --- |
+| `Chord Arp.bwdevice` | `previews/chord-arp.png` |
+| `Multiband FX-4.bwdevice` | `previews/multiband-fx-4.png` |
+| `Gesture Loop.bwmodulator` | `previews/gesture-loop.png` |
 
-Push the artifacts to the fork's default branch. In the launcher, open
-**Sources → Add source**, choose **Devices**, and enter `owner/repo`.
-Leave the folder filter empty to expose all builds. Use a repository-relative
-folder such as `Bitwig-6.1.7` to expose only that build.
+Builds with the same filename share one preview. The launcher derives the path
+from the filename, independently of the README's image links. It preserves
+the aspect ratio and scales larger images down to fit within 282 × 280 pixels
+in the details pane. Smaller images stay at their original size. Devices with
+missing or unreadable previews still appear in the catalog.
 
-Refresh **Devices**, select the intended build and check that the expected
-files appear. Disable the original source when testing a fork that distributes
-the same device UUIDs. The launcher adds its selected downloads to Patchbay's
-Device Folders list. Enable **Framework: Nitro Devices** in Patchbay to load
-the files.
+## Add a fork or another source
 
-Implementation references: [file discovery][tree], [build selection][builds],
-and [download and folder registration][downloads].
+In **Sources → Add source**, enter the GitHub repository as `owner/repo`.
+
+- For **Mods**, publish the built ZIPs as assets in the fork and use `*.zip`
+  as the source's file filter. Refresh **Mods** and check the ID and version.
+  Disable the original source when testing a fork that shares a mod ID.
+  For an independently installable fork, use its own ID consistently in the
+  source directory, manifest, ZIP directory and asset filename.
+- For **Devices**, push the artifacts and previews to the fork's default
+  branch. Leave the folder filter empty to expose every build or enter a
+  repository-relative folder such as `Bitwig-6.1.7`. Refresh **Devices**,
+  select the intended build and check the files and previews. Disable the
+  original source when testing a fork that shares device UUIDs. The launcher
+  adds its selected download folders to Patchbay's Device Folders list.
+
+## Launcher implementation
+
+- Mods use [asset naming and repository metadata][mod-metadata], the
+  [release catalog and installed versions][mod-catalog], and
+  [ZIP validation and installation][mod-install].
+- Devices use [file discovery][device-tree], [build selection][device-builds],
+  [download and folder registration][device-downloads],
+  [preview naming][preview-path] and [preview loading][preview-loading].
 
 [launcher]: https://github.com/arius77R/patchbay-launcher/tree/v0.9.1
-[tree]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L40-L130
-[builds]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L133-L155
-[downloads]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L160-L263
-[legacy-gesture-loop]: ../modulators/Gesture%20Loop.bwmodulator
+[mod-metadata]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Mods.java#L28-L76
+[mod-catalog]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Mods.java#L235-L315
+[mod-install]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Mods.java#L331-L468
+[device-tree]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L40-L130
+[device-builds]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L133-L155
+[device-downloads]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L160-L263
+[preview-path]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L32-L36
+[preview-loading]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Devices.java#L512-L547

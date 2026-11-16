@@ -39,6 +39,8 @@ The device names below link to the uncompressed builds. For Bitwig 6.1.7 and lat
 
 Gesture Loop records a macro movement and repeats it as a free-running modulation loop. Captured gestures are cleared when you reopen the project. Download the [build for 6.1.3 and 6.1.4](modulators/Gesture%20Loop.bwmodulator) or the [build for 6.1.7 and later](Bitwig-6.1.7/Gesture%20Loop.bwmodulator).
 
+The older build is a manual download. Patchbay Launcher 0.9.1 lists Gesture Loop only under the 6.1.7 build.
+
 ![Gesture Loop panel from an earlier build](previews/gesture-loop.png)
 
 ## Grid modules
@@ -105,5 +107,5 @@ The current **Chord Arp** is revision 4. Its loop endpoints use a different save
 
 [Bitwig Device Blueprints](https://github.com/polarity/bitwig-devices-blueprint) includes a working example and a guide to building a native Bitwig device. Point your coding agent at the blueprint repository's `AGENTS.md` to give it the build workflow and starting point for your own device.
 
-Follow the [Patchbay Launcher packaging contract](docs/patchbay-launcher.md)
+Follow the [shared Patchbay Launcher manifest](docs/patchbay-launcher.md#devices-modulators-and-grid-modules)
 when publishing device builds or adding a fork to the launcher.
