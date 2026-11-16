@@ -1,10 +1,28 @@
 # Polarity Bitwig Devices
 
-Native Bitwig Studio devices and modulators by [Polarity](https://polarity.me/), loaded through [Patchbay Mod Loader](https://github.com/shaboogen-dev/Patchbay). [Join the Discord to discuss the devices](https://discord.gg/Z3fEexCRHg).
+## Getting started
+
+- **Use the launcher.** On Windows and macOS, install Patchbay in the
+  unofficial Patchbay Launcher, then open **Mods** or **Devices** to pick
+  what to add. The launcher handles updates for Patchbay, mods, and devices.
+  [Download Patchbay Launcher](https://github.com/arius77R/patchbay-launcher/releases)
+- **Install manually.** Patchbay Mod Loader patches Bitwig at startup and
+  includes the frameworks that mods and devices use. Pick a release that
+  supports your Bitwig version and follow `INSTALL.md` in the ZIP.
+  [Download Patchbay](https://github.com/shaboogen-dev/Patchbay/releases)
+
+  - Get mod ZIPs from [Patchbay Mods](https://github.com/shaboogen-dev/Mods/releases).
+  - Get Polarity's mod ZIPs from [Bitwig Mods](https://github.com/polarity/bitwig-mods/releases).
+  - Get Polarity's devices and modulators from [Bitwig Devices](https://github.com/polarity/bitwig-devices#install).
+
+## What's in this repo
+
+My instruments, effects, note generators, and modulators for Bitwig Studio.
+[Join the Discord to discuss the devices](https://discord.gg/Z3fEexCRHg).
 
 ## Install
 
-Choose the build for your Bitwig Studio version:
+For manual setup, choose a device build for your Bitwig Studio version.
 
 - [Before 6.1.7](Bitwig-6.1.3-6.1.4/README.md): uncompressed Nitro builds for Bitwig 6.1.3 and 6.1.4.
 - [6.1.7 and later](Bitwig-6.1.7/README.md): compressed Nitro builds. Starting with 6.1.7, Bitwig requires compressed Nitro code on Windows, macOS and Linux. Check that Patchbay supports your exact Bitwig version.
