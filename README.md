@@ -56,11 +56,28 @@ The device names below link to the uncompressed builds. For Bitwig 6.1.7 and lat
 
 ## Modulators
 
-Gesture Loop records a macro movement and repeats it as a free-running modulation loop. Captured gestures are cleared when you reopen the project. Download the [build for 6.1.3 and 6.1.4](Bitwig-6.1.3-6.1.4/Gesture%20Loop.bwmodulator) or the [build for 6.1.7 and later](Bitwig-6.1.7/Gesture%20Loop.bwmodulator).
+| Modulator | Type | What it does | Panel |
+| --- | --- | --- | --- |
+| [Gesture Loop](Bitwig-6.1.7/Gesture%20Loop.bwmodulator) | Modulator | Records a macro movement and repeats it as a free-running modulation loop. Captured gestures are cleared when you reopen the project. | [Preview](previews/gesture-loop.png) |
+| [Key Quantizer](Bitwig-6.1.7/Key%20Quantizer.bwmodulator) | Modulator | Quantizes bipolar modulation to the project key, a preset scale or twelve custom pitch classes. | [Preview](previews/key-quantizer.png) |
+
+Key Quantizer targets Windows Bitwig **6.1.7** and has passed offline checks;
+live testing is pending. Modulate Input by 100%, center a destination frequency
+parameter on C3, and map the quantized output by +60 semitones. Select Project
+to follow the project key, or choose a manual Root and scale. The Scale view
+provides twelve Custom note switches.
+
+For Gesture Loop, download the [build for 6.1.3 and 6.1.4](Bitwig-6.1.3-6.1.4/Gesture%20Loop.bwmodulator) or the [build for 6.1.7 and later](Bitwig-6.1.7/Gesture%20Loop.bwmodulator).
 
 ![Gesture Loop panel from an earlier build](previews/gesture-loop.png)
 
 ## Grid modules
+
+| Module | Type | What it does | Panel |
+| --- | --- | --- | --- |
+| [Audio Buffer](Bitwig-6.1.7/Audio%20Buffer.bwmodule) | Grid module | Records up to 30 seconds of stereo audio with variable-rate playback and loop regions. In a polyphonic Grid, every voice plays the same recording with an independent playhead. | [Preview](previews/audio-buffer.png) |
+| [Sonogram](Bitwig-6.1.7/Sonogram.bwmodule) | Grid module | Shows a scrolling stereo spectrogram from 20 Hz to 20 kHz, with a selectable time window and optional time-frequency reassignment. | [Preview](previews/sonogram.png) |
+| [Vectorscope](Bitwig-6.1.7/Vectorscope.bwmodule) | Grid module | Draws a glowing XY trace from two Grid signals or a stereo pair, with adjustable persistence, motion blur, and hue. | [Preview](previews/vectorscope.png) |
 
 [Audio Buffer](Bitwig-6.1.7/Audio%20Buffer.bwmodule) records up to 30 seconds
 of stereo audio. In a polyphonic Grid, all voices share one recording and

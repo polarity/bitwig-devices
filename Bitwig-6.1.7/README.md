@@ -11,6 +11,7 @@ and registering the matching build.
 | [FILAR](FILAR.bwdevice) | Instrument |
 | [Gesture Loop](Gesture%20Loop.bwmodulator) | Modulator |
 | [Halftime](Halftime.bwdevice) | Audio FX |
+| [Key Quantizer](Key%20Quantizer.bwmodulator) | Modulator (Windows x86-64, offline-tested on 6.1.7) |
 | [Multiband FX-4](Multiband%20FX-4.bwdevice) | Audio FX |
 | [Normalizer](Normalizer.bwdevice) | Audio FX |
 | [Orbit](Orbit.bwdevice) | Audio FX |
@@ -28,6 +29,10 @@ Sonogram and Vectorscope include English live-help text. Keep their
 downloads, place the [Sonogram help](resources/Sonogram/resources.properties)
 and [Vectorscope help](resources/Vectorscope/resources.properties) in
 their respective `resources/<module name>/` folders beside the binaries.
+
+Key Quantizer is a Windows **6.1.7** candidate for local host testing. Its
+offline DSP, document and panel-expression checks pass; live behavior and
+macOS compatibility have not been tested.
 
 All 12 devices and the Gesture Loop modulator passed the offline Nitro
 reader check with the Bitwig Studio 6.1.7 macOS arm64 toolchain. The Windows

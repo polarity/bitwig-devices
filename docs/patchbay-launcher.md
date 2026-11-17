@@ -5,6 +5,7 @@ behavior described here was verified against [Patchbay Launcher 0.9.1][launcher]
 
 - [Mods](#mods)
 - [Devices, modulators and Grid modules](#devices-modulators-and-grid-modules)
+- [Device catalog descriptions](#device-catalog-descriptions)
 - [Device preview images](#device-preview-images)
 - [Add a fork or another source](#add-a-fork-or-another-source)
 
@@ -60,7 +61,8 @@ cannot find. Verify the required frameworks and versions in Patchbay.
 4. Preserve the device UUID across compatible variants. Document the supported
    Bitwig versions and update the download links. Register only the matching
    build in Patchbay and enable **Framework: Nitro Devices**.
-5. Add or update the [device preview image](#device-preview-images).
+5. Add or update the [catalog description](#device-catalog-descriptions) and
+   [device preview image](#device-preview-images). Verify both before pushing.
 
 Example paths include `Bitwig-6.1.3-6.1.4/Chord Arp.bwdevice`,
 `Bitwig-6.1.7/Chord Arp.bwdevice` and
@@ -75,6 +77,34 @@ for 6.1.6 when the next build starts at 6.1.7. Check the documented
 compatibility for the selected build. The launcher selects the oldest build
 if the detected version is below all available builds, or the newest build
 if version detection fails. Users can choose a build manually.
+
+## Device catalog descriptions
+
+The launcher reads types and descriptions only from single-line table rows
+in the repository's root `README.md`. It matches the linked display name
+exactly to the artifact filename without its extension. Use at least four
+columns, with the linked name, type and description as the first three:
+
+```markdown
+| Module | Type | What it does | Panel |
+| --- | --- | --- | --- |
+| [Audio Buffer](Bitwig-6.1.7/Audio%20Buffer.bwmodule) | Grid module | Records stereo audio with variable-rate playback and loop regions. | [Preview](previews/audio-buffer.png) |
+```
+
+This applies equally to `.bwdevice`, `.bwmodulator` and `.bwmodule` files.
+Builds sharing a filename share one metadata row. Prose sections, workspace
+manifests and version-folder READMEs do not supply launcher descriptions.
+Without a matching row, the file still appears with a fallback type and an
+empty description. A successful build or offline DSP gate does not validate
+this public catalog metadata.
+
+Before publication, check every artifact in every `Bitwig-*` build against
+the root README table and its derived preview path. For Polarity's collection,
+the private `bitwig.devices` checkout owns `scripts/distribution_catalog.py`
+and its local pre-push guard; see that checkout's export workflow. Install the
+guard separately on each publishing checkout. It checks the pushed commit,
+so an uncommitted README correction cannot hide missing published metadata.
+It is a local guard, not GitHub branch protection.
 
 ## Device preview images
 
