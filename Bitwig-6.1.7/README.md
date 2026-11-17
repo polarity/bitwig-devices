@@ -6,7 +6,7 @@ and registering the matching build.
 
 | Name | Type |
 | --- | --- |
-| [Audio Buffer](Audio%20Buffer.bwmodule) | Grid module |
+| [Audio Buffer](Audio%20Buffer.bwmodule) | Grid module (tested on Windows x86-64, 6.1.7) |
 | [Chord Arp](Chord%20Arp.bwdevice) | Note device |
 | [FILAR](FILAR.bwdevice) | Instrument |
 | [Gesture Loop](Gesture%20Loop.bwmodulator) | Modulator |
