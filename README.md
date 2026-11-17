@@ -63,10 +63,16 @@ Gesture Loop records a macro movement and repeats it as a free-running modulatio
 ## Grid modules
 
 [Audio Buffer](Bitwig-6.1.7/Audio%20Buffer.bwmodule) records up to 30 seconds
-of stereo audio in a monophonic FX Grid. Play it at variable speeds or use a
-Phase signal to write and read inside the selected region. Patch a transport
-ramp to sync both heads, reverse the ramp while recording, or enable
-**Keep Pitch** in the Inspector to compensate for shorter playback regions.
+of stereo audio. In a polyphonic Grid, all voices share one recording and
+each voice has its own playhead. Hold a note while recording in polyphonic
+mode, then use per-voice Phase or Rate to play the take.
+
+Enable **Capture One Cycle** in the Inspector and patch a Phasor or Transport
+ramp into Phase. Hold Record through two wraps to capture exactly one cycle.
+The captured cycle sets the take length. With **Capture One Cycle** off, you
+can use Phase to write directly into the selected region. **Keep Pitch**
+compensates for shorter playback regions when using external Phase.
+
 The waveform shows loop boundaries and the current record or playback
 position. The recorded audio shapes an abstract background that moves with
 playback speed.
