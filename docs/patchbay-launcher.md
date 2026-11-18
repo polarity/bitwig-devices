@@ -1,33 +1,78 @@
 # Patchbay Launcher packaging manifest
 
-Publishing rules for Bitwig mods and native Bitwig devices. The launcher
-behavior described here was verified against [Patchbay Launcher 0.9.1][launcher].
+Publishing guidance for Bitwig mods and native Bitwig devices. Follow the
+[upstream publishing guide][publishing] for current mod requirements. It is
+maintained in the [Patchbay Launcher repository][launcher-repo] for mods loaded
+through [Patchbay Mod Loader][patchbay].
 
+The implementation details below were verified against
+[Patchbay Launcher 0.9.1][launcher]. The device sections also document our
+collection's publishing workflow.
+
+- [Mods and devices: different publishing paths](#mods-and-devices-different-publishing-paths)
 - [Mods](#mods)
 - [Devices, modulators and Grid modules](#devices-modulators-and-grid-modules)
 - [Device catalog descriptions](#device-catalog-descriptions)
 - [Device preview images](#device-preview-images)
 - [Add a fork or another source](#add-a-fork-or-another-source)
 
+## Mods and devices: different publishing paths
+
+These are ordinary GitHub repositories. The difference is the source type
+selected in the launcher: **Mods** and **Devices** use separate discovery,
+metadata and installation paths. Repository names do not select the type.
+The upstream [publishing guide][publishing] covers mods; our device sections
+describe the [device implementation][device-tree] and Polarity's collection
+conventions.
+
+| Requirement or behavior | Mods | Devices, modulators and Grid modules |
+| --- | --- | --- |
+| Download source | Built ZIP assets in published GitHub Releases. | Individual `.bwdevice`, `.bwmodulator` and `.bwmodule` files on the default branch. |
+| Catalog metadata | `<mod-id>/mod.json`, matching the manifest inside the ZIP. | Filenames supply names, a root `README.md` table supplies types and descriptions, and `previews/` supplies images. Missing metadata does not prevent discovery. |
+| Update detection | Higher package version for the same `mod.id`. | Changed Git blob hash at the artifact path. |
+| Bitwig compatibility | `built_against` metadata and Patchbay maps; one cross-platform ZIP per mod version. | Optional `Bitwig-*` build folders; the launcher selects a build for the detected Bitwig version. |
+| Loading | Patchbay loads the installed mod and its declared dependencies. | **Framework: Nitro Devices** scans the registered device folders. |
+
+Device files do not need a mod ZIP, a GitHub Release or their own `mod.json`.
+The Nitro Devices framework is itself a mod; the files it loads remain device
+artifacts. Likewise, `Devices: Name` in a mod's name is only a mod category,
+not a device-source designation.
+
+For this collection, use the version folders described below. The launcher
+also supports device files without `Bitwig-*` folders. Within the selected
+source folder filter, once it finds supported files in top-level `Bitwig-*`
+folders, it excludes supported files outside those builds.
+
 ## Mods
 
 1. Keep the source manifest at `<mod-id>/mod.json` on the default branch. Use
-   the same stable ID for the directory and `mod.id`. The launcher can read
-   this manifest for the display name, author, description and requirements.
-2. Build one ZIP per mod. The ZIP must have exactly one top-level directory
+   the same stable ID for the directory and `mod.id`. Include `mod.name`,
+   `mod.author`, `mod.description`, and `built_against.bitwig_version`,
+   `platform` and `architecture`. Upstream requires this manifest to match
+   the packaged manifest; compare them before publishing.
+2. Build one cross-platform ZIP per mod for Windows, macOS and Linux, using
+   Patchbay's maps for platform and Bitwig differences. The ZIP must have
+   exactly one top-level directory
    named for `mod.id`. Put `mod.json`, the built helper JAR and the mod's
    resources in that directory. The launcher reads this manifest on install.
 3. Name the asset `<mod-id>-<version>.zip` using the exact `mod.version` from
-   the packaged manifest. Use `major.minor.patch` with an optional suffix
-   such as `-dev.9`. Launcher 0.9.1 accepts letters, digits and dots after
-   the hyphen. Omit a `v` prefix and `+build` metadata from the asset version.
+   the packaged manifest. Use `major.minor.patch` or `major.minor.patch-dev.N`.
+   Keep OS names and other suffixes out of the filename. Launcher 0.9.1's
+   parser accepts broader suffixes; use upstream's documented version format
+   for publication.
 4. Attach the built ZIP to a published GitHub Release. Prereleases work.
    Multiple mods can share a release because the launcher uses each asset name
    independently of the tag. GitHub's generated **Source code** ZIP lacks the
    built helper.
-5. Increase the manifest and asset versions together for each update. The
+5. Increase the manifest and asset versions together for each update. Publish
+   changed packages under a new version. The
    launcher keeps the highest asset version per mod ID across enabled sources.
    It offers an update when that version exceeds the installed `mod.version`.
+6. Give each independent mod or fork a unique `mod.id`. Reference another
+   author's frameworks through `requires`, using `id` and `min_version`.
+7. Prefix `mod.name` with `Category: Name`, using the exact
+   [upstream category list][categories].
+8. Keep Bitwig's installed files intact; load changes through Patchbay.
 
 For example, `note-intervals-0.1.0-dev.8.zip` contains
 `note-intervals/mod.json` with `mod.id` set to `note-intervals` and
@@ -130,10 +175,11 @@ missing or unreadable previews still appear in the catalog.
 
 In **Sources → Add source**, enter the GitHub repository as `owner/repo`.
 
-- For **Mods**, publish the built ZIPs as assets in the fork and use `*.zip`
-  as the source's file filter. Refresh **Mods** and check the ID and version.
-  Disable the original source when testing a fork that shares a mod ID.
-  For an independently installable fork, use its own ID consistently in the
+- For **Mods**, publish the built ZIPs as assets in the fork. The current
+  upstream workflow is **Sources → Mods → + Add → owner/repository → Check**.
+  Leave **Which release files** empty. For Launcher 0.9.1, use `*.zip` as the
+  source's file filter. Refresh **Mods** and check the ID and version.
+  Use the fork's own ID consistently in the
   source directory, manifest, ZIP directory and asset filename.
 - For **Devices**, push the artifacts and previews to the fork's default
   branch. Leave the folder filter empty to expose every build or enter a
@@ -151,6 +197,10 @@ In **Sources → Add source**, enter the GitHub repository as `owner/repo`.
   [download and folder registration][device-downloads],
   [preview naming][preview-path] and [preview loading][preview-loading].
 
+[publishing]: https://github.com/arius77R/patchbay-launcher/blob/main/docs/PUBLISHING.md
+[categories]: https://github.com/arius77R/patchbay-launcher/blob/main/docs/PUBLISHING.md#required
+[launcher-repo]: https://github.com/arius77R/patchbay-launcher
+[patchbay]: https://github.com/shaboogen-dev/Patchbay
 [launcher]: https://github.com/arius77R/patchbay-launcher/tree/v0.9.1
 [mod-metadata]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Mods.java#L28-L76
 [mod-catalog]: https://github.com/arius77R/patchbay-launcher/blob/v0.9.1/src/Mods.java#L235-L315
