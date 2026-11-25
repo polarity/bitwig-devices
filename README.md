@@ -52,20 +52,25 @@ The device names below link to the uncompressed builds. For Bitwig 6.1.7 and lat
 | [Rivet](Bitwig-6.1.3-6.1.4/Rivet.bwdevice) | Instrument | A monophonic synthesizer with three oscillators, a driven mixer, ladder filter, envelopes, noise and feedback. | [Preview](previews/rivet.png) |
 | [SHARD](Bitwig-6.1.3-6.1.4/SHARD.bwdevice) | Audio FX | Shapes audio with 3 to 63 logarithmically spaced spectral gain bands, from broad tonal changes to detailed sculpting. | [Preview](previews/shard.png) |
 | [Step Sequencer](Bitwig-6.1.3-6.1.4/Step%20Sequencer.bwdevice) | Note generator | A tempo-synced 16-step note sequencer with per-step gate, velocity, pressure and note rows. Place an instrument after it. | [Preview](previews/step-sequencer.png) |
-| [Stutter](Bitwig-6.1.3-6.1.4/Stutter.bwdevice) | Audio FX | Rearranges incoming audio on an editable slice timeline with repeat, reverse, tape stop, scratch, stutter and mute. | [Preview](previews/stutter.png) |
+| [Stutter](Bitwig-6.1.3-6.1.4/Stutter.bwdevice) | Audio FX | Rearranges incoming audio with repeat, reverse, tape stop, scratch, stutter and mute, plus a Dice button for random slice patterns. | [Preview](previews/stutter.png) |
 
 ## Modulators
 
 | Modulator | Type | What it does | Panel |
 | --- | --- | --- | --- |
 | [Gesture Loop](Bitwig-6.1.7/Gesture%20Loop.bwmodulator) | Modulator | Records a macro movement and repeats it as a free-running modulation loop. Captured gestures are cleared when you reopen the project. | [Preview](previews/gesture-loop.png) |
-| [Key Quantizer](Bitwig-6.1.7/Key%20Quantizer.bwmodulator) | Modulator | Quantizes bipolar modulation to the project key, a preset scale or twelve custom pitch classes. | [Preview](previews/key-quantizer.png) |
+| [Key Quantizer](Bitwig-6.1.7/Key%20Quantizer.bwmodulator) | Modulator | Centers per-voice bipolar modulation on the global or manual root and quantizes it to the chosen scale, with an expanded settings panel. | [Preview](previews/key-quantizer.png) |
 
-Key Quantizer targets Windows Bitwig **6.1.7** and has passed offline checks;
-live testing is pending. Modulate Input by 100%, center a destination frequency
-parameter on C3, and map the quantized output by +60 semitones. Select Project
-to follow the project key, or choose a manual Root and scale. The Scale view
-provides twelve Custom note switches.
+Key Quantizer revision 3 targets Windows Bitwig **6.1.7**. Expand it like the
+native LFO for scale settings and twelve Custom note switches. **Global (Project)**
+and **POLY** are enabled by default. A polyphonic source can drive Input per
+voice, with a separately quantized output for each voice. **Input zero plays
+the selected tonic**, including the global project's root. Modulate Input by
+100%, keep the destination frequency parameter on C3, and map the output by
++60 semitones. The output includes the tonic offset and may exceed +100% to
+retain the full pitch span. Offline mono/polyphonic DSP and panel checks pass;
+revision 3 still needs live confirmation. After updating, relaunch through Patchbay and
+insert a new modulator instance to get the expanded panel and polyphonic graph.
 
 For Gesture Loop, download the [build for 6.1.3 and 6.1.4](Bitwig-6.1.3-6.1.4/Gesture%20Loop.bwmodulator) or the [build for 6.1.7 and later](Bitwig-6.1.7/Gesture%20Loop.bwmodulator).
 
@@ -165,6 +170,11 @@ Bitwig Studio 6.1.7 for Windows x86-64. Live testing of these revisions is pendi
 ### Stutter
 
 ![Stutter panel showing the editable audio slice timeline](previews/stutter.png)
+
+Click the pink die below the graph to roll two to eight slices on the current Grid.
+Each click sets new slice boundaries, playback modes, rates, levels and tones.
+Revision 13 adds the graphical die and passed offline checks for Windows Bitwig 6.1.3, 6.1.4 and 6.1.7.
+Live testing of the Dice button is pending.
 
 ## Compatibility and updates
 

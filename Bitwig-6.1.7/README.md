@@ -30,9 +30,13 @@ downloads, place the [Sonogram help](resources/Sonogram/resources.properties)
 and [Vectorscope help](resources/Vectorscope/resources.properties) in
 their respective `resources/<module name>/` folders beside the binaries.
 
-Key Quantizer is a Windows **6.1.7** candidate for local host testing. Its
-offline DSP, document and panel-expression checks pass; live behavior and
-macOS compatibility have not been tested.
+Key Quantizer revision 3 is a Windows **6.1.7** candidate with a native expanded
+panel, polyphonic input/output and Global (Project) scale selected by default.
+Input zero now centers on the selected tonic. Keep the target frequency on C3
+and mapping depth at 60 semitones; the output supplies the tonic offset.
+Offline mono/polyphonic DSP, document and panel-expression checks pass. Insert
+a new instance after relaunching through Patchbay; live confirmation of this
+revision and macOS compatibility are pending.
 
 All 12 devices and the Gesture Loop modulator passed the offline Nitro
 reader check with the Bitwig Studio 6.1.7 macOS arm64 toolchain. The Windows
